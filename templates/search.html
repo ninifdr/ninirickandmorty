@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Search result </title>
+  </head>
+  <body>
+<a type="button" href="{{url_for('episodes')}}">Home</a>
+<form method="POST" action="{{ url_for('search') }}">
+  <p>Search by name: </p>
+  <input name="text">
+  <input type="submit" value="Search">
+</form>
+<h1>Search</h1>
+<h3>Results for: {{ text }}</h3>
+{% if episodes|length > 0 %}
+
+<h4>Matching episodes: </h4>
+{% for episode in episodes %}
+<li><a href="{{url_for('episode', id= episode['id'] )}}">{{ episode["episode"] }}: {{episode["name"]}}</a></li>
+{% endfor %}
+
+{% endif %}
+
+{% if characters|length > 0 %}
+
+<h4>Matching characters: </h4>
+{% for character in characters %}
+<li><a href="{{url_for('character', id= character['id'] )}}">{{character["name"]}}</a></li>
+{% endfor %}
+
+{% endif %}
+
+{% if locations|length > 0 %}
+
+<h4>Matching locations: </h4>
+{% for location in locations %}
+<li><a href="{{url_for('location', id= location['id'] )}}">{{location["name"]}}</a></li>
+{% endfor %}
+
+{% endif %}
+
+  </body>
+</html>

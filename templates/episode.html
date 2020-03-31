@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Episode - {{ episode["episode"] }}</title>
+  </head>
+  <body>
+    <a type="button" href="{{url_for('episodes')}}">Home</a>
+    <form method="POST" action="{{ url_for('search') }}">
+      <p>Search by name: </p>
+      <input name="text">
+      <input type="submit" value="Search">
+    </form>
+    <h1>{{ episode["episode"] }} : {{ episode["name"] }}</h1>
+    <p>Air date: {{ episode["air_date"] }}</p>
+    <h2>Characters:</h2>
+    {% for character in characters %}
+    <li><a href="{{url_for('character', id= character['id'] )}}">{{ character["name"] }}</a></li>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Location - {{ location["name"] }}</title>
+  </head>
+  <body>
+    <a type="button" href="{{url_for('episodes')}}">Home</a>
+    <form method="POST" action="{{ url_for('search') }}">
+      <p>Search by name: </p>
+      <input name="text">
+      <input type="submit" value="Search">
+    </form>
+    <h1>{{ location["name"] }}</h1>
+    <div>
+      <h2>Information</h2>
+      <p>Type: {{ location["type"] }}</p>
+      <p>Dimension: {{ location["dimension"] }}</p>
+    </div>
+    <div>
+      <h2>Residents</h2>
+      {% for resident in residents %}
+      <li><a href="{{url_for('character', id= resident['id'] )}}">{{ resident["name"] }}</a></li>
+      {% endfor %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Character - {{ character["name"] }}</title>
+  </head>
+  <body>
+    <a type="button" href="{{url_for('episodes')}}">Home</a>
+    <form method="POST" action="{{ url_for('search') }}">
+      <p>Search by name: </p>
+      <input name="text">
+      <input type="submit" value="Search">
+    </form>
+      <h1> {{ character["name"] }} </h1>
+      <img src="{{ character['image'] }}" alt="">
+      <div>
+        <h2>Information</h2>
+        <p>Status: {{ character["status"] }}</p>
+        <p>Specie: {{ character["species"] }}</p>
+        {% if character["type"] != "" %}
+        <p>Type: {{ character["species"] }}</p>
+        {% else %}
+        <p>Type: No type</p>
+        {% endif %}
+        <p>Gender: {{ character["gender"] }}</p>
+        <p>Origin : {{ character["origin"]["name"] }}</p>
+        {% if location != "unknown" %}
+        <p>Location: <a href="{{url_for('location', id= location['id'] )}}">{{ location["name"] }}</a> </p>
+        {% else %}
+        <p>Location: unknown</p>
+        {% endif %}
+      </div>
+      <div>
+        <h2>Episodes</h2>
+        {% for episode in episodes %}
+        <li><a href="{{url_for('episode', id= episode['id'] )}}">{{ episode["episode"] }}: {{episode["name"]}}</a></li>
+        {% endfor %}
+      </div>
+
+  </body>
+</html>
