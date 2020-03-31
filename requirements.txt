@@ -14,6 +14,7 @@ decorator==4.3.0
 Django==3.0.4
 entrypoints==0.2.3
 Flask==1.1.1
+gunicorn=19.9.0
 html5lib==1.0.1
 idna==2.9
 imageio==2.8.0
