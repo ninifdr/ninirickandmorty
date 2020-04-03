@@ -14,8 +14,8 @@
     <h1>Episodes</h1>
 
     {% for episode in episodes %}
-      <a href="{{url_for('episode', id= episode['id']) }}">{{ episode["episode"] }}<a/>
-      <p>{{ episode["name"] }}</p>
+      <p>{{ episode["episode"] }}</p>
+      <a href="{{url_for('episode', id= episode['id']) }}">{{ episode["name"] }}<a/>
       <p>{{ episode["air_date"] }}</p>
       <br>
     {% endfor %}
