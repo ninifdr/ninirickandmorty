@@ -7,8 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 def episodes():
     # busco los episodios en la página (hay solo 2 páginas en total)
-    query1 = f"https://rickandmortyapi.com/api/episode/?page=1"
-    query2 = f"https://rickandmortyapi.com/api/episode/?page=2"
+    query1 = f"https://integracion-rick-morty-api.herokuapp.com/api/episode/?page=1"
+    query2 = f"https://integracion-rick-morty-api.herokuapp.com/api/episode/?page=2"
     data1 = requests.get(query1)
     data2 = requests.get(query2)
     results = data1.json()["results"]
@@ -30,7 +30,7 @@ def search():
 @app.route("/episode/<int:id>")
 def episode(id):
     # busco el episodio
-    episode_query = f"https://rickandmortyapi.com/api/episode/{id}".format(id=id)
+    episode_query = f"https://integracion-rick-morty-api.herokuapp.com/api/episode/{id}".format(id=id)
     data = requests.get(episode_query)
     episode = data.json()
 
@@ -40,7 +40,7 @@ def episode(id):
         characters_ids += character.split("/")[-1] + ","
 
     # busco los personajes
-    character_query = f"https://rickandmortyapi.com/api/character/{characters_ids}".format(characters_ids=characters_ids[:-1])
+    character_query = f"https://integracion-rick-morty-api.herokuapp.com/api/character/{characters_ids}".format(characters_ids=characters_ids[:-1])
     data = requests.get(character_query)
     characters = data.json()
 
@@ -50,7 +50,7 @@ def episode(id):
 def character(id):
 
     # busco el personaje
-    character_query = f"https://rickandmortyapi.com/api/character/{id}".format(id = id)
+    character_query = f"https://integracion-rick-morty-api.herokuapp.com/api/character/{id}".format(id = id)
     data_character = requests.get(character_query)
     character = data_character.json()
 
@@ -59,14 +59,14 @@ def character(id):
     for episode in character["episode"]:
         episodes_ids += episode.split("/")[-1] + ","
 
-    episodes_query = f"https://rickandmortyapi.com/api/episode/{episodes_ids}".format(episodes_ids = episodes_ids[:-1])
+    episodes_query = f"https://integracion-rick-morty-api.herokuapp.com/api/episode/{episodes_ids}".format(episodes_ids = episodes_ids[:-1])
     data = requests.get(episodes_query)
     episodes = data.json()
 
     # si tiene location la busco si no retorno unknown
     if(character["location"]["name"] != "unknown"):
         location_id = character["location"]["url"].split("/")[-1]
-        location_query = f"https://rickandmortyapi.com/api/location/{location_id}".format(locations_ids = location_id)
+        location_query = f"https://integracion-rick-morty-api.herokuapp.com/api/location/{location_id}".format(locations_ids = location_id)
         data = requests.get(location_query)
         location = data.json()
     else:
@@ -77,7 +77,7 @@ def character(id):
 @app.route("/location/<int:id>")
 def location(id):
     # busco la locación
-    location_query = f"https://rickandmortyapi.com/api/location/{id}".format(id = id)
+    location_query = f"https://integracion-rick-morty-api.herokuapp.com/api/location/{id}".format(id = id)
     location_data = requests.get(location_query)
     location = location_data.json()
 
@@ -87,7 +87,7 @@ def location(id):
         residents_ids += resident.split("/")[-1] + ","
 
     # busco a los residentes
-    residents_query = f"https://rickandmortyapi.com/api/character/{residents_ids}".format(residents_ids=residents_ids[:-1])
+    residents_query = f"https://integracion-rick-morty-api.herokuapp.com/api/character/{residents_ids}".format(residents_ids=residents_ids[:-1])
     data = requests.get(residents_query)
     residents = data.json()
 
