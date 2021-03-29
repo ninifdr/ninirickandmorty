@@ -57,7 +57,7 @@ prompt-toolkit==1.0.15
 ptyprocess==0.6.0
 pycparser==2.19
 pygame==1.9.4
-Pygments==2.2.0
+Pygments==2.7.4
 pyparsing==2.2.0
 PyPDF2==1.26.0
 PyQt5==5.11.2
