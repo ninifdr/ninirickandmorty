@@ -59,7 +59,7 @@ pycparser==2.19
 pygame==1.9.4
 Pygments==2.2.0
 pyparsing==2.2.0
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 PyQt5==5.11.2
 PyQt5-sip==4.19.12
 python-dateutil==2.7.3
